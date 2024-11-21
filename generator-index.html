@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            font-family: Arial, sans-serif;
+        }
+
+        .generator {
+            background: #fff;
+            padding: 80px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            margin: 0px 10px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            color: #fff;
+            background: #f5576c;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #d94d5c;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: bold;
+            word-break: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="generator">
+        <h1>Password Generator</h1>
+        <p>
+            پسورد ساز ساده
+        </p>
+        <div class="input-group">
+            <input type="number" id="length" placeholder="Enter password length (e.g., 12)" />
+        </div>
+        <button onclick="generatePassword()">Generate Password</button>
+        <div class="result" id="result">Your password will appear here</div>
+    </div>
+    <script>
+        function generatePassword() {
+            const length = parseInt(document.getElementById("length").value);
+            const resultDiv = document.getElementById("result");
+
+            if (isNaN(length) || length <= 0) {
+                resultDiv.textContent = "Please enter a valid length.";
+                return;
+            }
+
+            const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:',.<>?";
+            let password = "";
+
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                password += characters[randomIndex];
+            }
+
+            resultDiv.textContent = `Generated Password: ${password}`;
+        }
+    </script>
+</body>
+</html>
